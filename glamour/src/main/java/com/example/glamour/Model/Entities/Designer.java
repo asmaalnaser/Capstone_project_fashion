@@ -20,6 +20,7 @@ public class Designer {
     private  int designer_Age;
 
     @OneToMany(mappedBy = "designer")
+
     @JsonIgnore
     private List<Details> items = new ArrayList<>();
 

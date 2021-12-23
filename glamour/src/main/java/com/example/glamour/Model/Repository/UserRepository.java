@@ -1,10 +1,12 @@
 package com.example.glamour.Model.Repository;
 
 
-import com.example.glamour.Model.Entities.Details;
+
+
+import com.example.glamour.Model.Entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface DetailsRepository extends JpaRepository<Details, Integer> {
+public interface UserRepository extends JpaRepository<User, String> {
 }

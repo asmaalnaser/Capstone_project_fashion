@@ -36,4 +36,7 @@ public class DetailsServices {
 
     public void addNewDetails(Details details) {
     }
+//
+//    public void addNewDetails(Details details) {
+//    }
 }
