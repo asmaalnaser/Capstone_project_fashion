@@ -17,21 +17,27 @@ public class Designer {
     private String designer_Email;
     private int designer_Phone;
     private String designer_Company;
-    private  int designer_Age;
+    private int designer_Age;
+    private String bio;
+    private String img;
 
-    @OneToMany(mappedBy = "designer")
+    @ManyToMany
+    @JoinTable(name = "User_designer",
+            joinColumns = @JoinColumn(name = "designer_Id"),
+            inverseJoinColumns = @JoinColumn(name = "username"))
+    private List<Users> users = new ArrayList<>();
 
-    @JsonIgnore
-    private List<Details> items = new ArrayList<>();
 
-    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, List<Details> items) {
+    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, List<Users> users) {
         this.designer_Id = designer_Id;
         this.designer_Name = designer_Name;
         this.designer_Email = designer_Email;
         this.designer_Phone = designer_Phone;
         this.designer_Company = designer_Company;
         this.designer_Age = designer_Age;
-        this.items = items;
+        this.bio = bio;
+        this.img = img;
+        this.users = users;
     }
 
     public Designer() {
@@ -85,12 +91,28 @@ public class Designer {
         this.designer_Age = designer_Age;
     }
 
-    public List<Details> getItems() {
-        return items;
+    public String getBio() {
+        return bio;
     }
 
-    public void setItems(List<Details> items) {
-        this.items = items;
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
     }
 
     @Override
@@ -102,7 +124,9 @@ public class Designer {
                 ", designer_Phone=" + designer_Phone +
                 ", designer_Company='" + designer_Company + '\'' +
                 ", designer_Age=" + designer_Age +
-                ", items=" + items +
+                ", bio='" + bio + '\'' +
+                ", img='" + img + '\'' +
+                ", users=" + users +
                 '}';
     }
 }
