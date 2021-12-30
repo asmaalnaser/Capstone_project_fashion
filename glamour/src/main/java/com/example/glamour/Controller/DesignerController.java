@@ -3,8 +3,6 @@ import com.example.glamour.Model.Entities.Designer;
 import com.example.glamour.Model.Services.DesignerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -26,6 +24,8 @@ public class DesignerController {
     public List<Designer> getDesigners() {
         return designerServices.getDesigners();
     }
+
+
     @GetMapping(path = "{designerId}")
     public Optional<Designer> getDesigner(@PathVariable(name = "designerId") Integer designerId) {
         return designerServices.getDesigner(designerId);
@@ -37,5 +37,9 @@ public class DesignerController {
         designerServices.addNewDesigner(designer);
     }
 
-
+     @DeleteMapping(path = "api/delete/designer/{designerId}")
+       public void deleteDesigner(@PathVariable("designerId")String designerId){
+        int intdesignerId = Integer.parseInt(designerId);
+        designerServices.deleteDesigner(intdesignerId);
+     }
 }

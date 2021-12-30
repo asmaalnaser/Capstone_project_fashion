@@ -32,6 +32,9 @@ public class DesignerServices {
     public void addNewDesigner(Designer designer) {
         designerRepository.save(designer);
     }
+    public void deleteDesigner(Integer designerId){
+        designerRepository.deleteById(designerId);
+    }
 
     }
 

@@ -1,15 +1,19 @@
 package com.example.glamour.Model.Entities;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 import javax.persistence.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
 @Table
 public class Designer {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int designer_Id;
@@ -21,6 +25,7 @@ public class Designer {
     private String bio;
     private String img;
 
+
     @ManyToMany
     @JoinTable(name = "User_designer",
             joinColumns = @JoinColumn(name = "designer_Id"),
@@ -28,7 +33,14 @@ public class Designer {
     private List<Users> users = new ArrayList<>();
 
 
-    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, List<Users> users) {
+
+
+    @OneToMany(mappedBy = "designer")
+    @JsonIgnore
+    private List<Details> details = new ArrayList<>();
+
+
+    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, List<Users> users, List<Details> details) {
         this.designer_Id = designer_Id;
         this.designer_Name = designer_Name;
         this.designer_Email = designer_Email;
@@ -38,10 +50,12 @@ public class Designer {
         this.bio = bio;
         this.img = img;
         this.users = users;
+       this.details = details;
     }
 
     public Designer() {
     }
+
 
     public int getDesigner_Id() {
         return designer_Id;
@@ -115,6 +129,15 @@ public class Designer {
         this.users = users;
     }
 
+    public List<Details> getItems() {
+        return details;
+    }
+
+    public void setItems(List<Details> items) {
+        this.details = items;
+    }
+
+
     @Override
     public String toString() {
         return "Designer{" +
@@ -127,7 +150,7 @@ public class Designer {
                 ", bio='" + bio + '\'' +
                 ", img='" + img + '\'' +
                 ", users=" + users +
+                ", items=" + details +
                 '}';
     }
 }
-
