@@ -18,6 +18,15 @@ public class Details {
     @JoinColumn(referencedColumnName = "designer_Id")
     private Designer designer;
 
+    public Details(String photo, String name, int age, int id, String address, String bio, Designer designer) {
+        this.photo = photo;
+        this.name = name;
+        this.age = age;
+        this.id = id;
+        this.address = address;
+        this.bio = bio;
+        this.designer = designer;
+    }
 
     public Details() {
     }
