@@ -1,45 +1,24 @@
-package com.example.glamour.Model.Services;
-
-
-
-import com.example.glamour.Model.Entities.Users;
-import com.example.glamour.Model.Repository.UsersRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-@Service
-public class UsersServices {
-
-    private UsersRepository usersRepository;
-
-    @Autowired
-    public UsersServices(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
-
-
-    public List<Users> getUsers() {
-        return usersRepository.findAll();
-    }
-
-//    public  Optional <User> getUser(String username){
-//        return userRepository.findById(username);
-
-      public Integer addNewUser(Users users){
-      if(usersRepository.existsById(users.getUsername())){
-          return 0;
-      }
-      else {
-       usersRepository.save(users);
-        return  1;
-      }
-
-    }
-        public  void  deleteUser(String username) {
-        usersRepository.deleteById(username);
-    }
-}
-
+//package com.example.glamour.Model.Services;
+//
+//;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.List;
+//
+//@Service
+//public class UsersServices {
+//
+//    public String getCheck(String username, String password) {
+//        if (usersRepository.existsByUsername(username)) {
+//            String pass = usersRepository.findPasswordByUsername(username);
+//            if (pass.equals(password)) {
+//                return "authenticated";
+//            } else {
+//                return "Password does not match";
+//            }
+//        }
+//
+//        return "Username not found";
+//    }
+//}
+//
