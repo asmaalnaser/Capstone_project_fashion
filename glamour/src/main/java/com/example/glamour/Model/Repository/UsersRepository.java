@@ -12,4 +12,3 @@
 //        @Query("select case when count(username) > 0 then true else false end from Users where username = :username")
 //        Boolean existsByUsername(@Param("username") String username);
 //    }
-//}

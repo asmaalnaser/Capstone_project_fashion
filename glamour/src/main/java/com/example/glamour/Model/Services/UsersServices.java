@@ -1,6 +1,6 @@
 //package com.example.glamour.Model.Services;
 //
-//;
+//
 //import org.springframework.stereotype.Service;
 //
 //import java.util.List;
@@ -21,4 +21,4 @@
 //        return "Username not found";
 //    }
 //}
-//
+

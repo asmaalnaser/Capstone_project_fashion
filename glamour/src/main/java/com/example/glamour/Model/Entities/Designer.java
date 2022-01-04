@@ -150,7 +150,7 @@ public class Designer {
                 ", bio='" + bio + '\'' +
                 ", img='" + img + '\'' +
                 ", users=" + users +
-                ", items=" + details +
+                ", details=" + details +
                 '}';
     }
 }
