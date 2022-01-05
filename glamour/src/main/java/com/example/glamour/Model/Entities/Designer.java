@@ -26,13 +26,11 @@ public class Designer {
     private String img;
 
 
-    @ManyToMany
-    @JoinTable(name = "User_designer",
-            joinColumns = @JoinColumn(name = "designer_Id"),
-            inverseJoinColumns = @JoinColumn(name = "username"))
-    private List<Users> users = new ArrayList<>();
-
-
+//    @ManyToMany
+//    @JoinTable(name = "User_designer",
+//            joinColumns = @JoinColumn(name = "designer_Id"),
+//            inverseJoinColumns = @JoinColumn(name = "username"))
+//               private List<Users> users = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "designer")
@@ -40,22 +38,13 @@ public class Designer {
     private List<Details> details = new ArrayList<>();
 
 
-    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, List<Users> users, List<Details> details) {
-        this.designer_Id = designer_Id;
-        this.designer_Name = designer_Name;
-        this.designer_Email = designer_Email;
-        this.designer_Phone = designer_Phone;
-        this.designer_Company = designer_Company;
-        this.designer_Age = designer_Age;
-        this.bio = bio;
-        this.img = img;
-        this.users = users;
-       this.details = details;
-    }
+    @OneToMany(mappedBy = "designer")
+    @JsonIgnore
+    private List<Booking> booking = new ArrayList<>();
+
 
     public Designer() {
     }
-
 
     public int getDesigner_Id() {
         return designer_Id;
@@ -121,20 +110,20 @@ public class Designer {
         this.img = img;
     }
 
-    public List<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<Users> users) {
-        this.users = users;
-    }
-
-    public List<Details> getItems() {
+    public List<Details> getDetails() {
         return details;
     }
 
-    public void setItems(List<Details> items) {
-        this.details = items;
+    public void setDetails(List<Details> details) {
+        this.details = details;
+    }
+
+    public List<Booking> getBooking() {
+        return booking;
+    }
+
+    public void setBooking(List<Booking> booking) {
+        this.booking = booking;
     }
 
 
@@ -149,8 +138,8 @@ public class Designer {
                 ", designer_Age=" + designer_Age +
                 ", bio='" + bio + '\'' +
                 ", img='" + img + '\'' +
-                ", users=" + users +
                 ", details=" + details +
+                ", booking=" + booking +
                 '}';
     }
 }

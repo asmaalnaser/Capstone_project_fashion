@@ -1,9 +1,11 @@
 package com.example.glamour.Model.Entities;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -16,13 +18,22 @@ public class Booking {
     private int date;
     private String communication;
 
-    public Booking(String username, String email, int number, int date, String communication) {
+
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "designer_Id")
+    private Designer designer;
+
+
+    public Booking(String username, String email, int number, int date, String communication, Designer designer) {
         this.username = username;
         this.email = email;
         this.number = number;
         this.date = date;
         this.communication = communication;
+        this.designer = designer;
     }
+
+
 
     public Booking() {
     }
@@ -67,6 +78,14 @@ public class Booking {
         this.communication = communication;
     }
 
+    public Designer getDesigner() {
+        return designer;
+    }
+
+    public void setDesigner(Designer designer) {
+        this.designer = designer;
+    }
+
 
     @Override
     public String toString() {
@@ -76,6 +95,7 @@ public class Booking {
                 ", number=" + number +
                 ", date=" + date +
                 ", communication='" + communication + '\'' +
+                ", designer=" + designer +
                 '}';
     }
 }

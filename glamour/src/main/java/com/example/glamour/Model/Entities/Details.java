@@ -1,15 +1,20 @@
 package com.example.glamour.Model.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
 public class Details {
     @Id
+    private int id;
     private String photo;
     private String name;
     private int age;
-    private int id;
+
     private String address;
     private String bio;
 
@@ -18,8 +23,18 @@ public class Details {
     @JoinColumn(referencedColumnName = "designer_Id")
     private Designer designer;
 
-
     public Details() {
+    }
+
+    public Details(String photo, String name, int age, int id, String address, String bio, List<Booking> booking, Designer designer) {
+        this.photo = photo;
+        this.name = name;
+        this.age = age;
+        this.id = id;
+        this.address = address;
+        this.bio = bio;
+       // this.booking = booking;
+        this.designer = designer;
     }
 
     public String getPhoto() {
@@ -69,6 +84,7 @@ public class Details {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
 
     public Designer getDesigner() {
         return designer;
