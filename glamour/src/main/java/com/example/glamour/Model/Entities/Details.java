@@ -20,6 +20,7 @@ public class Details {
 
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(referencedColumnName = "designer_Id")
     private Designer designer;
 
@@ -33,7 +34,6 @@ public class Details {
         this.id = id;
         this.address = address;
         this.bio = bio;
-       // this.booking = booking;
         this.designer = designer;
     }
 

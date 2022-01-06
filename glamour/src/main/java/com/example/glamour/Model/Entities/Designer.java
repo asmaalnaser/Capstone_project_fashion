@@ -15,7 +15,6 @@ public class Designer {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int designer_Id;
     private String designer_Name;
     private String designer_Email;
@@ -25,12 +24,22 @@ public class Designer {
     private String bio;
     private String img;
 
+    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img) {
+        this.designer_Id = designer_Id;
+        this.designer_Name = designer_Name;
+        this.designer_Email = designer_Email;
+        this.designer_Phone = designer_Phone;
+        this.designer_Company = designer_Company;
+        this.designer_Age = designer_Age;
+        this.bio = bio;
+        this.img = img;
+    }
 
-//    @ManyToMany
-//    @JoinTable(name = "User_designer",
-//            joinColumns = @JoinColumn(name = "designer_Id"),
-//            inverseJoinColumns = @JoinColumn(name = "username"))
-//               private List<Users> users = new ArrayList<>();
+        @ManyToMany
+    @JoinTable(name = "User_designer",
+            joinColumns = @JoinColumn(name = "designer_Id"),
+            inverseJoinColumns = @JoinColumn(name = "username"))
+               private List<Users> users = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "designer")
@@ -45,6 +54,7 @@ public class Designer {
 
     public Designer() {
     }
+
 
     public int getDesigner_Id() {
         return designer_Id;
@@ -110,6 +120,14 @@ public class Designer {
         this.img = img;
     }
 
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
+
     public List<Details> getDetails() {
         return details;
     }
@@ -126,7 +144,6 @@ public class Designer {
         this.booking = booking;
     }
 
-
     @Override
     public String toString() {
         return "Designer{" +
@@ -138,6 +155,7 @@ public class Designer {
                 ", designer_Age=" + designer_Age +
                 ", bio='" + bio + '\'' +
                 ", img='" + img + '\'' +
+                ", users=" + users +
                 ", details=" + details +
                 ", booking=" + booking +
                 '}';
