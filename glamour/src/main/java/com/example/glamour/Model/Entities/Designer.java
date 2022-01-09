@@ -52,9 +52,13 @@ public class Designer {
     private List<Booking> booking = new ArrayList<>();
 
 
+
+    @OneToMany(mappedBy = "designer")
+    @JsonIgnore
+    private List<Picture> picture = new ArrayList<>();
+
     public Designer() {
     }
-
 
     public int getDesigner_Id() {
         return designer_Id;
@@ -144,6 +148,14 @@ public class Designer {
         this.booking = booking;
     }
 
+    public List<Picture> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(List<Picture> picture) {
+        this.picture = picture;
+    }
+
     @Override
     public String toString() {
         return "Designer{" +
@@ -158,6 +170,7 @@ public class Designer {
                 ", users=" + users +
                 ", details=" + details +
                 ", booking=" + booking +
+                ", picture=" + picture +
                 '}';
     }
 }
