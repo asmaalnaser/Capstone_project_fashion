@@ -23,8 +23,9 @@ public class Designer {
     private int designer_Age;
     private String bio;
     private String img;
+    private  String expertise;
 
-    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img) {
+    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, String expertise, List<Users> users, List<Details> details, List<Booking> booking, List<Picture> picture) {
         this.designer_Id = designer_Id;
         this.designer_Name = designer_Name;
         this.designer_Email = designer_Email;
@@ -33,7 +34,14 @@ public class Designer {
         this.designer_Age = designer_Age;
         this.bio = bio;
         this.img = img;
+        this.expertise = expertise;
+        this.users = users;
+        this.details = details;
+        this.booking = booking;
+        this.picture = picture;
     }
+
+
 
         @ManyToMany
     @JoinTable(name = "User_designer",
@@ -124,6 +132,14 @@ public class Designer {
         this.img = img;
     }
 
+    public String getExpertise() {
+        return expertise;
+    }
+
+    public void setExpertise(String expertise) {
+        this.expertise = expertise;
+    }
+
     public List<Users> getUsers() {
         return users;
     }
@@ -167,6 +183,7 @@ public class Designer {
                 ", designer_Age=" + designer_Age +
                 ", bio='" + bio + '\'' +
                 ", img='" + img + '\'' +
+                ", expertise='" + expertise + '\'' +
                 ", users=" + users +
                 ", details=" + details +
                 ", booking=" + booking +
