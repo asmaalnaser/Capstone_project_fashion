@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @RestController
 @RequestMapping (path = "api/picture")
 @CrossOrigin
+
 public class PictureController {
 
-    private PictureServices pictureServices ;
+    private PictureServices pictureServices;
 
     @Autowired
 
@@ -37,15 +40,14 @@ public class PictureController {
     }
 
     @PostMapping("add/picture")
-    public void registerNewPicture(@RequestBody Picture picture){
+    public void registerNewPicture(@RequestBody Picture picture) {
         pictureServices.addNewPicture(picture);
-//    }
-//
+    }
+}
+
 //    @DeleteMapping(path = "api/delete/designer/{designerId}")
-//    public void deleteDesigner(@PathVariable("designerId")String designerId){
+//    public void deleteDesigner(@PathVariable("designerId")String designerId) {
 //        int intdesignerId = Integer.parseInt(designerId);
 //        designerServices.deleteDesigner(intdesignerId);
 //    }
-}
 
-}

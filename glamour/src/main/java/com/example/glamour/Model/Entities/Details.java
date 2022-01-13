@@ -27,7 +27,7 @@ public class Details {
     public Details() {
     }
 
-    public Details(String photo, String name, int age, int id, String address, String bio, List<Booking> booking, Designer designer) {
+    public Details(String photo, String name, int age, int id, String address, String bio) {
         this.photo = photo;
         this.name = name;
         this.age = age;
