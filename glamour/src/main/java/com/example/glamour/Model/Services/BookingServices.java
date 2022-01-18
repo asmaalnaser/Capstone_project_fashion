@@ -5,9 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
-
-
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +32,8 @@ public class BookingServices {
     public void addNewDBooking(Booking booking) {
         bookingRepository.save(booking);
     }
-    public void deleteBooking(Integer bookingId){
-        bookingRepository.deleteById(bookingId);
-    }
+//    public void deleteBooking(Integer bookingId){
+//        bookingRepository.deleteById(bookingId);
+//    }
 
 }

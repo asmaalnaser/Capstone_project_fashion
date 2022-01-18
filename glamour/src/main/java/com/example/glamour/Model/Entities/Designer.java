@@ -1,18 +1,22 @@
 package com.example.glamour.Model.Entities;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Entity
 @Table
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Designer {
 
 
     @Id
-    private int designer_Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String designer_Name;
     private String designer_Email;
     private int designer_Phone;
@@ -22,8 +26,18 @@ public class Designer {
     private String img;
     private String expertise;
 
-    public Designer(int designer_Id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, String expertise, List<User> user, List<Details> details, List<Booking> booking, List<Picture> picture) {
-        this.designer_Id = designer_Id;
+
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "BookingId",referencedColumnName = "id")
+//    private Booking booking;
+
+    @OneToOne(mappedBy = "designer")
+    private  Booking booking;
+
+    public Designer(int id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, String expertise, Booking booking) {
+        this.id = id;
         this.designer_Name = designer_Name;
         this.designer_Email = designer_Email;
         this.designer_Phone = designer_Phone;
@@ -32,46 +46,19 @@ public class Designer {
         this.bio = bio;
         this.img = img;
         this.expertise = expertise;
-        this.user = user;
-        this.details = details;
         this.booking = booking;
-        this.picture = picture;
     }
-
-
-
-    @ManyToMany
-    @JoinTable(name = "User_designer",
-            joinColumns = @JoinColumn(name = "designer_Id"),
-            inverseJoinColumns = @JoinColumn(name = "username"))
-    private List<User> user = new ArrayList<>();
-
-
-
-    @OneToMany(mappedBy = "designer")
-    @JsonIgnore
-    private List<Details> details = new ArrayList<>();
-
-
-    @OneToMany(mappedBy = "designer")
-    @JsonIgnore
-    private List<Booking> booking = new ArrayList<>();
-
-
-    @OneToMany(mappedBy = "designer")
-    @JsonIgnore
-    private List<Picture> picture = new ArrayList<>();
 
     public Designer() {
 
     }
 
-    public int getDesigner_Id() {
-        return designer_Id;
+    public int getId() {
+        return id;
     }
 
-    public void setDesigner_Id(int designer_Id) {
-        this.designer_Id = designer_Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDesigner_Name() {
@@ -138,35 +125,11 @@ public class Designer {
         this.expertise = expertise;
     }
 
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
-    }
-
-    public List<Details> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<Details> details) {
-        this.details = details;
-    }
-
-    public List<Booking> getBooking() {
+    public Booking getBooking() {
         return booking;
     }
 
-    public void setBooking(List<Booking> booking) {
+    public void setBooking(Booking booking) {
         this.booking = booking;
-    }
-
-    public List<Picture> getPicture() {
-        return picture;
-    }
-
-    public void setPicture(List<Picture> picture) {
-        this.picture = picture;
     }
 }

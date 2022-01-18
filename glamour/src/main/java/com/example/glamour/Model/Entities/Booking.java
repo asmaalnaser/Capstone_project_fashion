@@ -1,14 +1,20 @@
 package com.example.glamour.Model.Entities;
-
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
+
 
 
 @Entity
 @Table
-public class Booking {
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 
+public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String username;
     private String email;
     private int number;
@@ -16,12 +22,20 @@ public class Booking {
     private String communication;
 
 
-    @ManyToOne
-    @JoinColumn(referencedColumnName = "designer_Id")
-    private Designer designer;
 
+//@OneToMany(mappedBy = "designer" )
+//@JsonIgnore
+//private List<Booking> BookingItems =new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "booking")
+//    private List<Designer> items = new ArrayList<>();
 
-    public Booking(String username, String email, int number, int date, String communication, Designer designer) {
+  @OneToOne
+  @JoinColumn(name = "designer_Id",unique = true,updatable = false)
+  private Designer designer;
+
+    public Booking(int id, String username, String email, int number, int date, String communication, Designer designer) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.number = number;
@@ -30,10 +44,15 @@ public class Booking {
         this.designer = designer;
     }
 
-
-
-
     public Booking() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -82,18 +101,5 @@ public class Booking {
 
     public void setDesigner(Designer designer) {
         this.designer = designer;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", number=" + number +
-                ", date=" + date +
-                ", communication='" + communication + '\'' +
-                ", designer=" + designer +
-                '}';
     }
 }

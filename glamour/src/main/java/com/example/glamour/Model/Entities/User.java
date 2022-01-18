@@ -18,9 +18,9 @@ public class User {
     private String password;
     private String roles;
 
-    @ManyToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Designer> designers = new ArrayList<>();
+//    @ManyToMany(mappedBy = "user")
+//    @JsonIgnore
+//    private List<Designer> designers = new ArrayList<>();
 
 
     public User() {
@@ -30,14 +30,6 @@ public class User {
     public User(String userName, String password, String roles) {
         this.userName = userName;
         this.password = password;
-        this.roles = roles;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
         this.roles = roles;
     }
 
@@ -56,5 +48,16 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
 }
+
+
+
 

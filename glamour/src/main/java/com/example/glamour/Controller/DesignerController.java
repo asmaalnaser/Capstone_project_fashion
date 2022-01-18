@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-//@RequestMapping(path = "api/designer")
+@RequestMapping(path = "api/designer")
 @CrossOrigin(origins = "http://localhost:8080")
+
 
 
 public class DesignerController {
@@ -20,7 +21,7 @@ public class DesignerController {
         this.designerServices = designerServices;
     }
 
-    @GetMapping(path = "api/designer")
+  @GetMapping
     public List<Designer> getDesigners() {
         return designerServices.getDesigners();
     }
@@ -32,7 +33,7 @@ public class DesignerController {
 
     }
 
-    @PostMapping("/designer/add")
+    @PostMapping("add")
     public void registerNewDesigner(@RequestBody Designer designer){
         designerServices.addNewDesigner(designer);
     }
