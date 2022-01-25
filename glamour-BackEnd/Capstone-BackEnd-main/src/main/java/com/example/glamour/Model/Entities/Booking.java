@@ -23,18 +23,19 @@ public class Booking {
 
 
 
-//@OneToMany(mappedBy = "designer" )
-//@JsonIgnore
-//private List<Booking> BookingItems =new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "booking")
-//    private List<Designer> items = new ArrayList<>();
 
   @OneToOne
   @JoinColumn(name = "designer_Id",unique = true,updatable = false)
   private Designer designer;
 
-    public Booking(int id, String username, String email, int number, int date, String communication, Designer designer) {
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "userName")
+    private User user;
+
+  @OneToOne (mappedBy = "booking")
+    private Review review;
+
+    public Booking(int id, String username, String email, int number, int date, String communication, Designer designer, User user, Review review) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -42,7 +43,11 @@ public class Booking {
         this.date = date;
         this.communication = communication;
         this.designer = designer;
+        this.user = user;
+        this.review = review;
     }
+
+
 
     public Booking() {
     }
@@ -101,5 +106,21 @@ public class Booking {
 
     public void setDesigner(Designer designer) {
         this.designer = designer;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Review getReview() {
+        return review;
+    }
+
+    public void setReview(Review review) {
+        this.review = review;
     }
 }

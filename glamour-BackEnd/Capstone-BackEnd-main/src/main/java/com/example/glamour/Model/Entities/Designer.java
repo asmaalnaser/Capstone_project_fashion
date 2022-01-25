@@ -28,15 +28,11 @@ public class Designer {
 
 
 
-
-//    @ManyToOne
-//    @JoinColumn(name = "BookingId",referencedColumnName = "id")
-//    private Booking booking;
-
     @OneToOne(mappedBy = "designer")
     private  Booking booking;
 
-    public Designer(int id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, String expertise, Booking booking) {
+
+    public Designer(int id, String designer_Name, String designer_Email, int designer_Phone, String designer_Company, int designer_Age, String bio, String img, String expertise) {
         this.id = id;
         this.designer_Name = designer_Name;
         this.designer_Email = designer_Email;
@@ -46,7 +42,6 @@ public class Designer {
         this.bio = bio;
         this.img = img;
         this.expertise = expertise;
-        this.booking = booking;
     }
 
     public Designer() {

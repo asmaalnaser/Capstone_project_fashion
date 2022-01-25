@@ -3,12 +3,10 @@ package com.example.glamour.Model.Entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Table
@@ -22,15 +20,19 @@ public class User {
 //    @JsonIgnore
 //    private List<Designer> designers = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<Booking>items = new ArrayList<>();
 
-    public User() {
-
-    }
-
-    public User(String userName, String password, String roles) {
+    public User(String userName, String password, String roles, List<Booking> items) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
+        this.items = items;
+    }
+
+
+    public User() {
     }
 
     public String getUserName() {
@@ -55,6 +57,14 @@ public class User {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public List<Booking> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Booking> items) {
+        this.items = items;
     }
 }
 

@@ -32,8 +32,8 @@ public class BookingServices {
     public void addNewDBooking(Booking booking) {
         bookingRepository.save(booking);
     }
-//    public void deleteBooking(Integer bookingId){
-//        bookingRepository.deleteById(bookingId);
-//    }
+    public void deleteBooking(Integer bookingId){
+        bookingRepository.deleteById(bookingId);
+    }
 
 }

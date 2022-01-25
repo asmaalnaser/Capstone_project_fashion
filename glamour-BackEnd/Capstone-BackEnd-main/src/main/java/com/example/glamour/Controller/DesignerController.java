@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "https://glamourasma.herokuapp.com/")
 @RestController
 @RequestMapping(path = "api/designer")
-@CrossOrigin(origins = "http://localhost:8080")
 
 
 
@@ -27,7 +27,7 @@ public class DesignerController {
     }
 
 
-    @GetMapping(path = "{designerId}")
+    @GetMapping(path = "designers/{designerId}")
     public Optional<Designer> getDesigner(@PathVariable(name = "designerId") Integer designerId) {
         return designerServices.getDesigner(designerId);
 
@@ -38,7 +38,7 @@ public class DesignerController {
         designerServices.addNewDesigner(designer);
     }
 
-     @DeleteMapping(path = "api/delete/designer/{designerId}")
+     @DeleteMapping(path = "delete/{designerId}")
        public void deleteDesigner(@PathVariable("designerId")String designerId){
         int intdesignerId = Integer.parseInt(designerId);
         designerServices.deleteDesigner(intdesignerId);

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-
+@CrossOrigin(origins = "https://glamourasma.herokuapp.com/")
 @RestController
 @RequestMapping
 public class BookingController {
@@ -27,7 +27,7 @@ public class BookingController {
     }
 
 
-    @GetMapping(path = "{bookingId}")
+    @GetMapping(path = "booking/{bookingId}")
     public Optional<Booking> getBooking(@PathVariable(name = "bookingId") Integer bookingId) {
         return bookingServices.getBooking(bookingId);
 
@@ -39,10 +39,10 @@ public class BookingController {
     }
 
 
-//    @DeleteMapping(path = "delete/booking")
-//    public void deleteBooking(@PathVariable("bookingId")String bookingId){
-//        int intbookingId = Integer.parseInt(bookingId);
-//        bookingServices.deleteBooking(intbookingId);
-//    }
+    @DeleteMapping(path = "delete/booking/{bookingId}")
+    public void deleteBooking(@PathVariable("bookingId")String bookingId){
+        int intbookingId = Integer.parseInt(bookingId);
+        bookingServices.deleteBooking(intbookingId);
+    }
 }
 
